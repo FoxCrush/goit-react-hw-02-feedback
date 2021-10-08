@@ -1,5 +1,6 @@
 import './App.css';
 import React, { Component } from 'react';
+import Statistics from 'components/statistics/';
 // import propTypes from 'PropTypes';
 
 class App extends Component {
@@ -19,12 +20,14 @@ class App extends Component {
   };
 
   render() {
-    const { good } = this.state;
+    const { good, neutral, bad } = this.state;
     const totalFeedbacks = Object.values(this.state).reduce(
       (acc, value) => acc + value,
     );
-    const positiveFeedbackPercentage = (good / totalFeedbacks) * 100;
-    console.log('~ positiveFeedbackPercentage', positiveFeedbackPercentage);
+    const positiveFeedbackPercentage = (
+      (good / totalFeedbacks) *
+      100
+    ).toFixed();
 
     return (
       <section className="feedbackSection">
@@ -50,13 +53,12 @@ class App extends Component {
         >
           Bad
         </button>
-        <h2>Statistics</h2>
-        <ul className="feedbackList">
-          <li className="feedbackListItem">Good: {this.state.good}</li>
-          <li className="feedbackListItem">Neutral: {this.state.neutral}</li>
-          <li className="feedbackListItem">Bad: {this.state.bad}</li>
-        </ul>
-        <span>Total feedbacks: {totalFeedbacks}</span>
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          positiveFeedbackPercentage={positiveFeedbackPercentage}
+        />
       </section>
     );
   }

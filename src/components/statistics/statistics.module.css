@@ -1,0 +1,15 @@
+.feedbackList {
+  list-style: none;
+  padding: 0;
+}
+
+.feedbackListItem {
+  margin: 5px 0;
+}
+.overallFeedbackStatContainer {
+  display: flex;
+  flex-direction: column;
+}
+.feedbackStatItem {
+  margin-top: 10px;
+}
