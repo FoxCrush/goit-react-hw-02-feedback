@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Feedback from './feedback';
 
 class App extends Component {
-  initialState = { good: 0, neutral: 0, bad: 0 };
+  initialState = { good: 2, neutral: 1, bad: 3 };
   render() {
     return <Feedback initialState={this.initialState} />;
   }

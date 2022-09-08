@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 
 class Feedback extends Component {
+  static defaultProps = { initialState: { good: 0, neutral: 0, bad: 0 } };
+  static propTypes = {
+    //
+  };
+
   state = this.props.initialState;
+
   buttonClickHandler = event => {
-    console.log('click on any button', event.target.name);
     this.setState(prevState => {
       return {
         [event.target.name]: prevState[event.target.name] + 1,
