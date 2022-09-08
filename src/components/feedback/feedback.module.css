@@ -1,0 +1,29 @@
+.feedbackContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(209, 209, 236);
+}
+.feedbackControlContainer {
+  margin-bottom: 20px;
+}
+.statisticsContainer {
+  border: 1px solid grey;
+}
+.feedbackTitle {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+.feedbackButton {
+  margin-left: 10px;
+  width: 150px;
+  height: 50px;
+}
+.statisticsTitle {
+  font-size: 35px;
+}
+.statisticsItem {
+  margin-bottom: 15px;
+}
+.statisticsItemTitle {
+  font-size: 25px;
+}
