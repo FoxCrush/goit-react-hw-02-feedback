@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './feedback.module.css';
-import FeedbackControls from './feedbackControls';
+import FeedbackOptions from './FeedbackOptions';
+import Statistics from './Statistics';
 
 class Feedback extends Component {
   static defaultProps = { initialState: { good: 0, neutral: 0, bad: 0 } };
@@ -15,7 +16,6 @@ class Feedback extends Component {
       (current, acc) => current + acc,
       0
     );
-    console.log('countTotalFeedback', totalFeedbackCount);
     return totalFeedbackCount;
   };
 
@@ -24,7 +24,6 @@ class Feedback extends Component {
       (100 * this.state.good) /
         Object.values(this.state).reduce((current, acc) => current + acc, 0)
     );
-    console.log('countPositiveFeedbackPercentage', percentage);
     return percentage;
   };
 
@@ -47,34 +46,12 @@ class Feedback extends Component {
     return (
       <div className={styles.feedbackContainer}>
         <span className={styles.feedbackTitle}>Please leave your feedback</span>
-        <FeedbackControls onButtonClick={this.buttonClickHandler} />
-
-        <div className={styles.statisticsContainer}>
-          <span className={styles.statisticsTitle}>Statistics</span>
-          <ul>
-            <li className={styles.statisticsItem}>
-              <span className={styles.statisticsItemTitle}>
-                Good {this.state.good}
-              </span>
-            </li>
-            <li className={styles.statisticsItem}>
-              <span className={styles.statisticsItemTitle}>
-                Neutral {this.state.neutral}
-              </span>
-            </li>
-            <li className={styles.statisticsItem}>
-              <span className={styles.statisticsItemTitle}>
-                Bad {this.state.bad}
-              </span>
-            </li>
-            <span className={styles.statisticsItemTitle}>
-              {this.countTotalFeedback()}
-            </span>
-            <span className={styles.statisticsItemTitle}>
-              {this.countPositiveFeedbackPercentage()}
-            </span>
-          </ul>
-        </div>
+        <FeedbackOptions onButtonClick={this.buttonClickHandler} />
+        <Statistics
+          values={this.state}
+          countTotalFeedback={this.countTotalFeedback}
+          countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage}
+        />
       </div>
     );
   }
