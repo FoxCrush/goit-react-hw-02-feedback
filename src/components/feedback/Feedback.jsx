@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './feedback.module.css';
+import FeedbackControls from './feedbackControls';
 
 class Feedback extends Component {
   static defaultProps = { initialState: { good: 0, neutral: 0, bad: 0 } };
@@ -9,6 +10,24 @@ class Feedback extends Component {
 
   state = this.props.initialState;
 
+  countTotalFeedback = () => {
+    const totalFeedbackCount = Object.values(this.state).reduce(
+      (current, acc) => current + acc,
+      0
+    );
+    console.log('countTotalFeedback', totalFeedbackCount);
+    return totalFeedbackCount;
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const percentage = Math.floor(
+      (100 * this.state.good) /
+        Object.values(this.state).reduce((current, acc) => current + acc, 0)
+    );
+    console.log('countPositiveFeedbackPercentage', percentage);
+    return percentage;
+  };
+
   buttonClickHandler = event => {
     this.setState(prevState => {
       return {
@@ -16,36 +35,20 @@ class Feedback extends Component {
       };
     });
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state !== prevState) {
+      this.countPositiveFeedbackPercentage();
+      this.countTotalFeedback();
+    }
+  }
+
   render() {
     return (
       <div className={styles.feedbackContainer}>
         <span className={styles.feedbackTitle}>Please leave your feedback</span>
-        <div className={styles.feedbackControlContainer}>
-          <button
-            type="button"
-            name="good"
-            className={styles.feedbackButton}
-            onClick={this.buttonClickHandler}
-          >
-            Good
-          </button>
-          <button
-            type="button"
-            name="neutral"
-            className={styles.feedbackButton}
-            onClick={this.buttonClickHandler}
-          >
-            Neutral
-          </button>
-          <button
-            type="button"
-            name="bad"
-            className={styles.feedbackButton}
-            onClick={this.buttonClickHandler}
-          >
-            Bad
-          </button>
-        </div>
+        <FeedbackControls onButtonClick={this.buttonClickHandler} />
+
         <div className={styles.statisticsContainer}>
           <span className={styles.statisticsTitle}>Statistics</span>
           <ul>
@@ -64,6 +67,12 @@ class Feedback extends Component {
                 Bad {this.state.bad}
               </span>
             </li>
+            <span className={styles.statisticsItemTitle}>
+              {this.countTotalFeedback()}
+            </span>
+            <span className={styles.statisticsItemTitle}>
+              {this.countPositiveFeedbackPercentage()}
+            </span>
           </ul>
         </div>
       </div>
