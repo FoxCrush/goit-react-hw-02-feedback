@@ -17,6 +17,7 @@
   margin-left: 10px;
   width: 150px;
   height: 50px;
+  border-radius: 5%;
 }
 .statisticsTitle {
   font-size: 35px;
@@ -29,4 +30,8 @@
 }
 .totalStatistics {
   font-size: 20px;
+}
+.noStatisticsNotification {
+  margin-left: 50px;
+  font-size: 25px;
 }

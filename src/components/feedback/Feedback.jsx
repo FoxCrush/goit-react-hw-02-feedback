@@ -47,11 +47,19 @@ class Feedback extends Component {
       <div className={styles.feedbackContainer}>
         <span className={styles.feedbackTitle}>Please leave your feedback</span>
         <FeedbackOptions onButtonClick={this.buttonClickHandler} />
-        <Statistics
-          values={this.state}
-          countTotalFeedback={this.countTotalFeedback}
-          countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage}
-        />
+        {this.countTotalFeedback() > 0 ? (
+          <Statistics
+            values={this.state}
+            countTotalFeedback={this.countTotalFeedback}
+            countPositiveFeedbackPercentage={
+              this.countPositiveFeedbackPercentage
+            }
+          />
+        ) : (
+          <span className={styles.noStatisticsNotification}>
+            There is no feedback
+          </span>
+        )}
       </div>
     );
   }
