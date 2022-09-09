@@ -21,8 +21,8 @@ const Statistics = ({
         <span className={styles.statisticsItemTitle}>Bad: {values.bad}</span>
       </li>
       <ul className={styles.totalStatistics}>
-        <li>Total: {countPositiveFeedbackPercentage()}</li>
-        <li>Positive feedback: {`${countTotalFeedback()} %`}</li>
+        <li>Total: {countTotalFeedback()}</li>
+        <li>Positive feedback: {`${countPositiveFeedbackPercentage()} %`}</li>
       </ul>
     </ul>
   </div>
