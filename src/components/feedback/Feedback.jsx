@@ -5,9 +5,6 @@ import Statistics from './Statistics';
 
 class Feedback extends Component {
   static defaultProps = { initialState: { good: 0, neutral: 0, bad: 0 } };
-  static propTypes = {
-    //
-  };
 
   state = this.props.initialState;
 
@@ -64,4 +61,5 @@ class Feedback extends Component {
     );
   }
 }
+
 export default Feedback;

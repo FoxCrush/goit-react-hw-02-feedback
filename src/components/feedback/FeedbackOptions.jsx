@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './feedback.module.css';
 
 const FeedbackControls = ({ onButtonClick }) => (
@@ -29,4 +30,6 @@ const FeedbackControls = ({ onButtonClick }) => (
     </button>
   </div>
 );
+
+FeedbackControls.propTypes = { onButtonClick: PropTypes.func.isRequired };
 export default FeedbackControls;
